@@ -1,0 +1,142 @@
+import java.io.*;
+class barang{
+
+	public static void main(String [] args) throws IOException{
+		
+		BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
+		int ketemu=0;
+		
+		String [][]dataList = {
+			{"ABG1","Kemeja","25000",},
+			{"ABG2","Celana","20000",},
+			{"ABG3","Gelang","27000",},
+			{"ABG4","Jilbab","22000",},
+			{"ABG5","Sepatu","22000",},
+			{"ABG6","Laptop","22000",},
+			{"ABG7","Carger","28000",},
+			{"ABG8","Poster","22000",},
+			{"ABG9","Banner","22000",},
+			{" "," "," "}
+		};
+		do{
+			System.out.println ("");
+			System.out.println ("==========================");
+			System.out.println (" PENCARIAN DATA BARANG ");
+			System.out.println ("==========================");
+			System.out.println ("");
+			System.out.println ("1. CARI DATA BERDASARKAN KODE");
+			System.out.println ("2. CARI DATA BERDASARKAN NAMA BARANG");
+			System.out.println ("3. CARI DATA BERDASARKAN HARGA");
+			System.out.println ("4. DELETE DATA BERDASARKAN KODE");
+			System.out.println ("5. UPDATE DATA BARANG ");
+			System.out.println ("6. TAMBAH DATA BARANG");
+			System.out.println ("7. VIEW SEMUA DATA");
+			System.out.println ("8. EXIT");
+			System.out.print ("Pilih pilihan [1-8] : ");
+			int piluser = Integer.parseInt(br.readLine());
+			
+			switch(piluser){
+				case 1 :
+					System.out.print("Input Kode : ");
+					String kodeq=br.readLine();
+					ketemu=0;
+					for(int k =0;k<dataList.length;k++){
+						if(dataList[k][0].equals(kodeq)){
+							System.out.println();
+							System.out.println("   DATA BARANG");
+							System.out.println(dataList[k][0]+"  "+ dataList[k][1]+"  "+ dataList[k][2] );
+							System.out.println();
+							ketemu=1;
+							break;
+						}
+					}
+					if(ketemu==0){
+						System.out.println("Data tidak ditemukan!");
+					}
+					break;
+				case 2 : 
+					System.out.print("Input Nama : ");
+					String nama=br.readLine();
+					ketemu=0;
+					for(int k =0;k<dataList.length;k++){
+						if(dataList[k][1].equalsIgnoreCase(nama)){
+							System.out.println();
+							System.out.println("   DATA BARANG");
+							System.out.println(dataList[k][0]+"  "+ dataList[k][1]+"  "+ dataList[k][2] );
+							System.out.println();
+							ketemu=1;
+							break;
+						}
+					}
+					if(ketemu==0){
+						System.out.println("Data tidak ditemukan!");
+					}
+					break;
+				case 3 : 
+					System.out.print("Input Harga : ");
+					String angkatan=br.readLine();
+					System.out.println("   DATA BARANG");
+					for(int k =0;k<dataList.length;k++){
+						if(dataList[k][2].equals(angkatan)){
+							
+							System.out.println(dataList[k][0]+"  "+ dataList[k][1]+"  "+ dataList[k][2] );
+						}
+					}
+					break;
+				case 4 :
+					System.out.print("Input Kode : ");
+					String kodehapus=br.readLine();
+					ketemu=0;
+					for(int k =0;k<dataList.length;k++){
+						if(dataList[k][0].equals(kodehapus)){
+							ketemu=k;
+							break;
+						}
+					}
+					
+					for(int m = ketemu; m<dataList.length-1; m++){
+						dataList[m][0]=dataList[m+1][0];
+						dataList[m][1]=dataList[m+1][1];
+						dataList[m][2]=dataList[m+1][2];
+					}
+					break;
+				case 5 : 
+					System.out.print("Input Kode : ");
+					String kodeubah=br.readLine();
+					ketemu=0;
+					for(int k =0;k<dataList.length;k++){
+						if(dataList[k][0].equals(kodeubah)){
+							ketemu=k;
+							break;
+						}
+					}
+					
+					System.out.print("Ubah Kode : ");
+					dataList[ketemu][0]=br.readLine();
+					System.out.print("Ubah Nama Barang : ");
+					dataList[ketemu][1]=br.readLine();
+					System.out.print("Ubah Harga : ");
+					dataList[ketemu][2]=br.readLine();
+					break;
+				case 6 : 
+				
+					int ii = dataList.length+1;
+					System.out.print("Input Kode : ");
+					dataList[ii][0]=br.readLine();
+					System.out.print("Input Nama Barang: ");
+					dataList[ii][1]=br.readLine();
+					System.out.print("Input Harga : ");
+					dataList[ii][2]=br.readLine();
+					break;
+				case 7 : 
+					for(int i = 0; i<dataList.length; i++){
+						System.out.println(dataList[i][0]+"   "+dataList[i][1]+"  "+ dataList[i][2] );
+					}
+					break;
+				case 8 : 
+					System.exit(0);
+					break;
+			}
+		}while(true);
+	}
+}
